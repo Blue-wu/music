@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wuwc.classbs.music.dao.RecommendMapper">
+    <resultMap id="BaseResultMap" type="com.wuwc.classbs.music.domain.Recommend" >
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="Name" jdbcType="VARCHAR" property="name"/>
+        <result column="Singer" jdbcType="TINYINT" property="singer"/>
+
+        <result column="Time" jdbcType="TIMESTAMP" property="time"/>
+        <result column="Url" jdbcType="VARCHAR" property="url"/>
+        <result column="Type" jdbcType="TINYINT" property="type"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,Name,Singer,Time,Url,Type
+    </sql>
+
+
+    <select id="recommendOfType" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select <include refid="Base_Column_List"></include>
+        from musicsystem_info
+        where Type = #{type}
+    </select>
+
+
+
+</mapper>
